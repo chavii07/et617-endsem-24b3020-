@@ -2,7 +2,7 @@
 
 - **Identity Token:** `<24b3020>`
 - **Exam Card:** `P4` (Adaptive tutor with automatic question generation) | `T9` (Percentages: discount, profit and loss) | `L5` (Learner repeating the topic after failing it once, high anxiety and low self-efficacy) | `C5` (Teacher-in-the-loop: teacher view showing learner progress and letting the teacher approve or override AI feedback)
-- **Repository:** `et617-endsem-<24b3020>`
+- **Repository:** `et617-endsem-24b3020`
 
 ---
 
@@ -301,7 +301,7 @@ This creates an auditable record of teacher intervention and ensures AI-generate
    - Reflects teacher interventions in the learner view.
 
 6. **Screen 6: About & Pedagogical Inspector Screen**
-   - Displays Identity Token `<YOUR_ROLL_NO>`.
+   - Displays Identity Token `<24b3020>`.
    - Displays exam card details `P4-T9-L5-C5`.
    - Shows the adaptive decision rules and recent learning-path decisions for viva inspection.
 
@@ -472,4 +472,3 @@ AI tools are used for:
 AI-generated numerical answers are not blindly trusted. A deterministic calculation engine independently verifies mathematical answers, while the teacher reviews feedback before it reaches the learner.
 
 The application combines rule-based adaptation, AI-assisted content generation and human oversight to create a safer and more personalised remedial learning experience.
-

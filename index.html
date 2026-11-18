@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Percentage PAL | 24b3020</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="app-branding">
+        <div class="app-logo-badge">₹ PAL</div>
+        <div class="app-title-group">
+          <h1>Percentages: Discount, Profit & Loss</h1>
+          <p>Class 8 Remedial Adaptive Tutor • Pune, MH</p>
+        </div>
+      </div>
+
+      <!-- Role Switcher (Learner ↔ Teacher) -->
+      <div class="role-switcher-container">
+        <button id="role-learner-btn" class="role-btn active" title="Switch to Sharvee's Learner View">
+          <span>🎒</span> Learner View
+        </button>
+        <button id="role-teacher-btn" class="role-btn" title="Switch to Ms. Deshmukh's Review Dashboard">
+          <span>👩‍🏫</span> Teacher View
+          <span id="pending-badge-counter" class="nav-badge-count" style="display: none;">0</span>
+        </button>
+      </div>
+
+      <!-- Badges -->
+      <div class="header-badges">
+        <span class="card-badge">P4 • T9 • L5 • C5</span>
+        <span class="token-badge" title="Verified Identity Token">ID: 24b3020</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Screen Tabs -->
+  <nav class="sub-nav">
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-screen="screen_welcome"><span>🌱</span> 1. Calm Welcome</button>
+      <button class="nav-tab" data-screen="screen_receipt"><span>🧾</span> 2. Receipt Explorer</button>
+      <button class="nav-tab" data-screen="screen_workspace"><span>✏️</span> 3. Adaptive Workspace</button>
+      <button class="nav-tab" data-screen="screen_branch"><span>🔀</span> 4. Adaptive Branch & Visual Bar</button>
+      <button class="nav-tab" data-screen="screen_teacher"><span>👩‍🏫</span> 5. Teacher-in-the-Loop</button>
+      <button class="nav-tab" data-screen="screen_inspector"><span>🔍</span> 6. Inspector & Viva</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- =========================================================================
+         SCREEN 1: Learner Welcome & Calm Check-in (L5 Persona)
+         ========================================================================= -->
+    <section id="screen_welcome" class="screen-view active">
+      <div class="calm-banner teal">
+        <div class="banner-icon">🌸</div>
+        <div class="banner-content">
+          <h4>Welcome back, Sharvee!</h4>
+          <p>Take a slow breath. Math isn't about memorizing confusing formulas under pressure. Today, we'll discover how everyday shopkeepers on FC Road in Pune price their snacks and stationery using simple rupee steps.</p>
+        </div>
+      </div>
+
+      <div class="welcome-grid">
+        <!-- Persona Details Card -->
+        <div class="persona-box">
+          <div class="persona-avatar">👩‍🎓</div>
+          <div class="persona-details">
+            <h3>Sharvee Kulkarni (13, Class 8)</h3>
+            <p class="persona-tagline">Repeating Percentages unit • High math anxiety • Guided by Ms. Deshmukh</p>
+            <p style="font-size: 0.93rem; color: #475569;">"I always used to freeze when three prices (Cost Price, Marked Price, Selling Price) showed up together on the blackboard. Formulas felt like a blur."</p>
+
+            <div class="persona-meta-grid">
+              <div class="meta-item">
+                <div class="meta-label">Topic</div>
+                <div class="meta-val">T9: Percentages (Cl. 8)</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Teacher</div>
+                <div class="meta-val">Ms. Deshmukh</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Core Target</div>
+                <div class="meta-val">Intuition over Formulas</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Pacing</div>
+                <div class="meta-val">Calm & Adaptive</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calm Confidence Check-in Card -->
+        <div class="card checkin-card">
+          <div>
+            <div class="card-header">
+              <h3 class="card-title"><span>🧘</span> How are you feeling right now?</h3>
+              <span class="badge badge-teal">Calm Check-in</span>
+            </div>
+            <p style="font-size: 0.95rem; color: var(--text-muted);">Before we start, check in with yourself. There are zero wrong answers here:</p>
+
+            <div class="confidence-slider-group">
+              <div class="slider-labels">
+                <span>1 - A bit nervous</span>
+                <span>3 - Getting ready</span>
+                <span>5 - Confident & calm</span>
+              </div>
+              <input type="range" id="confidence-range" min="1" max="5" value="2" class="custom-range">
+              <div id="confidence-indicator" class="slider-indicator">2 / 5 — "A bit nervous, but ready to take it one step at a time"</div>
+            </div>
+
+            <div class="calm-banner amber" style="margin-top: 14px;">
+              <div class="banner-icon">🛡️</div>
+              <div class="banner-content">
+                <h4>You are safe here:</h4>
+                <p>No sudden red buzzer alarms. If you ever hesitate, your teacher Ms. Deshmukh is right here in your corner reviewing your thinking.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button id="start-learning-btn" class="cta-btn">
+              <span>🚀</span> Start Learning: Explore Store Receipts
+            </button>
+            <button id="welcome-switch-teacher-btn" class="cta-btn secondary">
+              <span>👩‍🏫</span> Open Teacher Dashboard (Ms. Deshmukh)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SCREEN 2: Concept Anchor & Everyday Store Receipt Explorer
+         ========================================================================= -->
+    <section id="screen_receipt" class="screen-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title"><span>👟</span> Part A: The Three-Price Retail Story</h2>
+          <span class="badge badge-teal">Concept Anchor</span>
+        </div>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">Imagine you and your friend visit a sneaker shop in Pune. Notice the 3 distinct rupee numbers:</p>
+
+        <div class="anchor-story-container">
+          <!-- Step 1: CP -->
+          <div class="story-step-card">
+            <span class="step-num-badge blue">Step 1 • Factory Cost</span>
+            <div class="story-price-display">CP: ₹1,000</div>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">Cost Price (CP)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">What the shopkeeper paid the factory to bring the sneakers to the shelf.</p>
+          </div>
+
+          <!-- Step 2: MP -->
+          <div class="story-step-card">
+            <span class="step-num-badge purple">Step 2 • Sticker Tag</span>
+            <div class="story-price-display">MP: ₹1,500</div>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">Marked Price / MRP (MP)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">The shiny printed sticker you see on the shoebox before any discount.</p>
+          </div>
+
+          <!-- Step 3: SP -->
+          <div class="story-step-card">
+            <span class="step-num-badge green">Step 3 • Cash Counter</span>
+            <div class="story-price-display">SP: ₹1,350</div>
+            <h4 style="font-size: 1rem; margin-bottom: 4px;">Selling Price (SP)</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">What you actually hand over at the cash counter after 10% off the sticker!</p>
+          </div>
+        </div>
+
+        <!-- The Two Golden Rules -->
+        <div class="golden-rules-banner">
+          <div class="golden-rules-title"><span>⭐</span> The Two Golden Rules (Sharvee's Memory Anchor)</div>
+          <ul class="golden-rules-list">
+            <li><strong>Rule 1: Discount is ALWAYS taken off the Marked Price (MP)</strong> — because customers only see the sticker tag on the box!</li>
+            <li><strong>Rule 2: Profit or Loss is ALWAYS measured from the Cost Price (CP)</strong> — because the shopkeeper measures gain from their original factory investment!</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Part B: Interactive Receipt Explorer -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title"><span>🧾</span> Part B: "My Everyday Store Receipt" Interactive Calculator</h2>
+          <span class="badge badge-amber">Interactive Tool</span>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Enter any snack, stationery or apparel item you bought recently at your local Pune store:</p>
+
+        <div class="receipt-layout">
+          <!-- Inputs Form -->
+          <div>
+            <div class="form-group">
+              <label class="form-label" for="rcpt-item-name">Item Name</label>
+              <input type="text" id="rcpt-item-name" class="form-control" value="Masala Chips Packet" placeholder="e.g. Geometry Box, Notebook">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rcpt-mrp">Marked Price / MRP (₹ printed on sticker)</label>
+              <input type="number" id="rcpt-mrp" class="form-control" value="50" min="1">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="rcpt-sp">Price You Paid / Selling Price (₹ paid at counter)</label>
+              <input type="number" id="rcpt-sp" class="form-control" value="45" min="1">
+            </div>
+
+            <div class="form-group" style="margin-top: 18px; background: #f8fafc; padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-card);">
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600;">
+                <input type="checkbox" id="rcpt-extra-discount-toggle" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                <span>Simulate: + Extra 10% Festive Counter Discount</span>
+              </label>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Notice how the second 10% is calculated on the already-discounted price!</p>
+            </div>
+
+            <button id="save-receipt-entry-btn" class="cta-btn secondary" style="margin-top: 8px;">
+              <span>💾</span> Save to Sharvee's Learning Journal
+            </button>
+          </div>
+
+          <!-- Live Visual Receipt Slip -->
+          <div>
+            <div class="receipt-slip">
+              <div class="receipt-header-text">
+                <h4>Everyday Mart Pune</h4>
+                <p style="font-size: 0.8rem; color: #64748b;">Customer: Sharvee Kulkarni</p>
+              </div>
+
+              <div class="receipt-line-item">
+                <span id="slip-item-name">Masala Chips Packet</span>
+                <span id="slip-mrp-display">₹50.00</span>
+              </div>
+
+              <div class="receipt-line-item saved">
+                <span>Direct Rupee Savings</span>
+                <span id="slip-rupee-savings">-₹5.00</span>
+              </div>
+
+              <div class="receipt-line-item">
+                <span>Calculated Discount % on MRP</span>
+                <span id="slip-discount-pct" style="font-weight: 700; color: #d97706;">10.00%</span>
+              </div>
+
+              <div id="slip-extra-discount-row" class="receipt-line-item saved" style="display: none;">
+                <span>Extra 10% Festival Discount (on ₹45.00)</span>
+                <span id="slip-extra-savings">-₹4.50</span>
+              </div>
+
+              <div class="receipt-line-item bold">
+                <span>Final Price at Counter</span>
+                <span id="slip-final-sp" style="color: var(--primary);">₹45.00</span>
+              </div>
+
+              <!-- Live Visual Rupee-Bar -->
+              <div class="rupee-bar-wrapper">
+                <div class="rupee-bar-label-group">
+                  <span>Price Breakdown</span>
+                  <span id="bar-percentage-label">Paid: 90% | Saved: 10%</span>
+                </div>
+                <div class="visual-progress-track">
+                  <div id="bar-paid-segment" class="bar-segment sp" style="width: 90%;">₹45 Paid</div>
+                  <div id="bar-discount-segment" class="bar-segment discount" style="width: 10%;">₹5 Off</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <button id="go-to-workspace-btn" class="cta-btn">
+                <span>✏️</span> Go to Adaptive Workspace (5 Tasks)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SCREEN 3: Adaptive Learner Workspace (Tasks 1 to 5)
+         ========================================================================= -->
+    <section id="screen_workspace" class="screen-view">
+      <!-- Workspace Header with Task Navigation Tabs -->
+      <div class="card" style="margin-bottom: 16px; padding: 16px 20px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700;">Adaptive Problem Workspace</h2>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">Step-by-step non-MCQ tasks targeting base clarity and successive discounts</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <label style="font-size: 0.85rem; display: flex; align-items: center; gap: 6px; cursor: pointer; background: #f8fafc; padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-card);">
+              <input type="checkbox" id="auto-approve-toggle" style="accent-color: var(--primary);">
+              <span>⚡ Quick Demo: Auto-Approve</span>
+            </label>
+            <span class="badge badge-teal" id="workspace-mode-badge">Offline Engine Active</span>
+          </div>
+        </div>
+
+        <div class="workspace-tabs" style="margin-top: 14px;">
+          <button class="task-tab-btn active" data-task-tab="0">
+            <span class="task-badge-status done" id="tab-status-0"></span> Task 1: Price-Tag Mapping
+          </button>
+          <button class="task-tab-btn" data-task-tab="1">
+            <span class="task-badge-status untouched" id="tab-status-1"></span> Task 2: Step Workspace (Bag)
+          </button>
+          <button class="task-tab-btn" data-task-tab="2">
+            <span class="task-badge-status untouched" id="tab-status-2"></span> Task 3: Error Critique (Kabir)
+          </button>
+          <button class="task-tab-btn" data-task-tab="3">
+            <span class="task-badge-status untouched" id="tab-status-3"></span> Task 4: What-If Strategy
+          </button>
+          <button class="task-tab-btn" data-task-tab="4">
+            <span class="task-badge-status untouched" id="tab-status-4"></span> Task 5: Dynamic Scenario
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= TASK 1: Price-Tag Mapping ================= -->
+      <div id="task-panel-0" class="task-container active">
+        <div class="task-prompt-card">
+          <span class="task-context-badge">Task 1: Warm-up & Role Mapping • FC Road Stationery</span>
+          <div class="task-prompt-text">
+            A stationery shopkeeper buys a geometry box from the factory for ₹400, prints an MRP sticker of ₹500 on the box, and sells it to Sharvee for ₹450 with a ₹50 discount.
+          </div>
+          <ul class="task-sub-prompts">
+            <li>Assign each number to its retail role (Cost Price, Marked Price, Selling Price).</li>
+            <li>Select which price the 10% discount was calculated on.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 14px;">Assign Roles to Each Price:</h3>
+          
+          <div class="role-mapping-grid">
+            <div class="role-mapping-card">
+              <div class="role-price-display text-teal">₹400</div>
+              <label class="form-label">Role of ₹400:</label>
+              <select id="t1-cp-select" class="form-control">
+                <option value="400">Cost Price (CP) — Factory Cost</option>
+                <option value="500">Marked Price (MP) — Sticker Tag</option>
+                <option value="450">Selling Price (SP) — Counter Price</option>
+              </select>
+            </div>
+
+            <div class="role-mapping-card">
+              <div class="role-price-display text-amber">₹500</div>
+              <label class="form-label">Role of ₹500:</label>
+              <select id="t1-mp-select" class="form-control">
+                <option value="500">Marked Price (MP) — Sticker Tag</option>
+                <option value="400">Cost Price (CP) — Factory Cost</option>
+                <option value="450">Selling Price (SP) — Counter Price</option>
+              </select>
+            </div>
+
+            <div class="role-mapping-card">
+              <div class="role-price-display text-green">₹450</div>
+              <label class="form-label">Role of ₹450:</label>
+              <select id="t1-sp-select" class="form-control">
+                <option value="450">Selling Price (SP) — Counter Price</option>
+                <option value="400">Cost Price (CP) — Factory Cost</option>
+                <option value="500">Marked Price (MP) — Sticker Tag</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 16px;">
+            <label class="form-label">Which price was the 10% discount (₹50) calculated on?</label>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="radio" name="t1-discount-base" value="MP" checked>
+                <span>Marked Price / MRP (₹500)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="radio" name="t1-discount-base" value="CP">
+                <span>Cost Price / CP (₹400)</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="radio" name="t1-discount-base" value="SP">
+                <span>Selling Price / SP (₹450)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Hint Accordion -->
+          <div class="hint-accordion">
+            <button class="hint-trigger" type="button" data-hint="0">
+              <span>💡 Need a gentle hint?</span>
+              <span>▼</span>
+            </button>
+            <div class="hint-body" id="hint-body-0">
+              Think about who looks at which number! When Sharvee walks into the shop, she looks at the printed tag sticker (₹500). That is the base for her discount.
+            </div>
+          </div>
+
+          <button id="submit-task-0-btn" class="cta-btn">Submit Task 1</button>
+
+          <!-- Feedback Box -->
+          <div id="feedback-box-0" class="feedback-box"></div>
+        </div>
+      </div>
+
+      <!-- ================= TASK 2: Step-by-Step Numerical Workspace ================= -->
+      <div id="task-panel-1" class="task-container">
+        <div class="task-prompt-card">
+          <span class="task-context-badge">Task 2: Step Workspace • School Bag Monsoon Sale</span>
+          <div class="task-prompt-text">
+            A school bag costs a shopkeeper ₹800 (Cost Price, CP). She puts an MRP tag of ₹1,000 (Marked Price, MP) and offers a 15% monsoon discount.
+          </div>
+          <ul class="task-sub-prompts">
+            <li>(a) Calculate the Selling Price (SP).</li>
+            <li>(b) Calculate her actual Profit % on CP.</li>
+            <li>(c) In 1–2 sentences, explain why you subtracted the 15% from ₹1,000 instead of ₹800.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label" for="t2-sp-input">(a) Selling Price Sharvee pays (₹):</label>
+            <input type="number" id="t2-sp-input" class="form-control" placeholder="e.g. 850">
+            <small style="color: var(--text-light);">Hint: 15% of ₹1,000 = ₹150 off the tag.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t2-profit-input">(b) Shopkeeper's Profit % on CP (%):</label>
+            <input type="number" id="t2-profit-input" class="form-control" step="0.01" placeholder="e.g. 6.25">
+            <small style="color: var(--text-light);">Hint: Compare rupee profit against the ₹800 factory cost.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t2-explanation-input">(c) Explain your reasoning in 1–2 sentences:</label>
+            <textarea id="t2-explanation-input" class="form-control" placeholder="Explain why discount applies to ₹1,000 and profit is calculated from ₹800..."></textarea>
+          </div>
+
+          <!-- Hint Accordion -->
+          <div class="hint-accordion">
+            <button class="hint-trigger" type="button" data-hint="1">
+              <span>💡 Need a gentle hint?</span>
+              <span>▼</span>
+            </button>
+            <div class="hint-body" id="hint-body-1">
+              Step 1: 15% of ₹1,000 is ₹150. Subtract ₹150 from ₹1,000 to get SP = ₹850. Step 2: Profit is ₹850 - ₹800 = ₹50. Step 3: Divide ₹50 by ₹800 and multiply by 100!
+            </div>
+          </div>
+
+          <button id="submit-task-1-btn" class="cta-btn">Submit Task 2</button>
+
+          <!-- Feedback Box -->
+          <div id="feedback-box-1" class="feedback-box"></div>
+        </div>
+      </div>
+
+      <!-- ================= TASK 3: Error Critique ("Fix the Mistake") ================= -->
+      <div id="task-panel-2" class="task-container">
+        <div class="task-prompt-card">
+          <span class="task-context-badge">Task 3: Error Critique • Phoenix Mall Supermarket</span>
+          <div class="task-prompt-text">
+            At the supermarket, a ₹500 box of chocolates has a festive banner: <strong>"10% OFF + Extra 10% OFF at Checkout!"</strong>.<br>
+            Your friend Kabir claims: <em>"10% + 10% means a flat 20% discount! So 20% of ₹500 is ₹100, and I will pay ₹400."</em>
+          </div>
+          <ul class="task-sub-prompts">
+            <li>Is Kabir Right or Wrong?</li>
+            <li>What is the price after applying the first 10% discount?</li>
+            <li>What is the true final Selling Price after the second 10%?</li>
+            <li>Explain why 10% + 10% does NOT equal a flat 20% discount.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label">Is Kabir Right or Wrong?</label>
+            <div style="display: flex; gap: 16px;">
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="radio" name="t3-kabir-claim" value="wrong" checked>
+                <span>Kabir is WRONG</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                <input type="radio" name="t3-kabir-claim" value="right">
+                <span>Kabir is RIGHT</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t3-price1-input">Intermediate Price after FIRST 10% discount (₹):</label>
+            <input type="number" id="t3-price1-input" class="form-control" placeholder="e.g. 450">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t3-final-sp-input">Final Selling Price after SECOND 10% discount (₹):</label>
+            <input type="number" id="t3-final-sp-input" class="form-control" placeholder="e.g. 405">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t3-explanation-input">Explain Kabir's mistake in your own words:</label>
+            <textarea id="t3-explanation-input" class="form-control" placeholder="Explain why the second 10% is calculated on ₹450 rather than ₹500..."></textarea>
+          </div>
+
+          <!-- Hint Accordion -->
+          <div class="hint-accordion">
+            <button class="hint-trigger" type="button" data-hint="2">
+              <span>💡 Need a gentle hint?</span>
+              <span>▼</span>
+            </button>
+            <div class="hint-body" id="hint-body-2">
+              Remember: When the cashier applies the second discount, the chocolate box price has already dropped from ₹500 to ₹450. What is 10% of ₹450?
+            </div>
+          </div>
+
+          <button id="submit-task-2-btn" class="cta-btn">Submit Task 3</button>
+
+          <!-- Feedback Box -->
+          <div id="feedback-box-2" class="feedback-box"></div>
+        </div>
+      </div>
+
+      <!-- ================= TASK 4: What-If Prediction & Strategy ================= -->
+      <div id="task-panel-3" class="task-container">
+        <div class="task-prompt-card">
+          <span class="task-context-badge">Task 4: What-If Prediction • Electronics Bazar Pune</span>
+          <div class="task-prompt-text">
+            A retailer purchases Bluetooth headphones at CP = ₹1,200 and prints an MRP sticker of MP = ₹1,600. During a festive sale, the owner demands: <em>"We must earn at least a 10% profit on our Cost Price!"</em>
+          </div>
+          <ul class="task-sub-prompts">
+            <li>What is the highest discount percentage on the Marked Price (MP) the retailer can offer?</li>
+            <li>Explain your strategy step by step.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label" for="t4-max-discount-input">Maximum Discount Percentage on Marked Price (%):</label>
+            <input type="number" id="t4-max-discount-input" class="form-control" step="0.1" placeholder="e.g. 17.5">
+            <small style="color: var(--text-light);">Hint: First calculate minimum SP needed (1200 + 10% of 1200 = ₹1,320), then find the discount from ₹1,600.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t4-explanation-input">Explain your strategy step by step:</label>
+            <textarea id="t4-explanation-input" class="form-control" placeholder="Step 1: Target SP = ... Step 2: Rupee discount = ... Step 3: Divide discount by MP ..."></textarea>
+          </div>
+
+          <!-- Hint Accordion -->
+          <div class="hint-accordion">
+            <button class="hint-trigger" type="button" data-hint="3">
+              <span>💡 Need a gentle hint?</span>
+              <span>▼</span>
+            </button>
+            <div class="hint-body" id="hint-body-3">
+              10% profit on ₹1,200 is ₹120, so minimum SP is ₹1,320. The gap between MP (₹1,600) and ₹1,320 is ₹280. Remember to divide ₹280 by ₹1,600 (not ₹1,200)!
+            </div>
+          </div>
+
+          <button id="submit-task-3-btn" class="cta-btn">Submit Task 4</button>
+
+          <!-- Feedback Box -->
+          <div id="feedback-box-3" class="feedback-box"></div>
+        </div>
+      </div>
+
+      <!-- ================= TASK 5: Dynamic Adaptive Scenario ================= -->
+      <div id="task-panel-4" class="task-container">
+        <div class="task-prompt-card">
+          <span class="task-context-badge" id="t5-context-badge">Task 5: Adaptive Micro-Scenario • Deccan Sports Mart</span>
+          <div class="task-prompt-text" id="t5-prompt-text">
+            A sports shopkeeper buys a cricket bat for CP = ₹900 and tags it with an MRP of ₹1,200. During the cricket season, he offers a 15% discount.
+          </div>
+          <ul class="task-sub-prompts" id="t5-sub-prompts">
+            <li>(a) Find the actual Selling Price (SP).</li>
+            <li>(b) Calculate the shopkeeper's Profit % on CP.</li>
+            <li>(c) Explain which price you used to calculate the discount and why.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="form-group">
+            <label class="form-label" for="t5-sp-input" id="t5-sp-label">Selling Price (₹):</label>
+            <input type="number" id="t5-sp-input" class="form-control" placeholder="e.g. 1020">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t5-secondary-input" id="t5-secondary-label">Shopkeeper's Profit % (%):</label>
+            <input type="number" id="t5-secondary-input" class="form-control" step="0.01" placeholder="e.g. 13.33">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="t5-explanation-input">Explanation of Base Price:</label>
+            <textarea id="t5-explanation-input" class="form-control" placeholder="Explain your calculation steps and the base values you selected..."></textarea>
+          </div>
+
+          <!-- Hint Accordion -->
+          <div class="hint-accordion">
+            <button class="hint-trigger" type="button" data-hint="4">
+              <span>💡 Need a gentle hint?</span>
+              <span>▼</span>
+            </button>
+            <div class="hint-body" id="hint-body-4">
+              Remember the two golden rules: Discount is off the Marked Price (MRP tag), and Profit % is measured from the Cost Price (factory cost)!
+            </div>
+          </div>
+
+          <button id="submit-task-4-btn" class="cta-btn">Submit Adaptive Task 5</button>
+
+          <!-- Feedback Box -->
+          <div id="feedback-box-4" class="feedback-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SCREEN 4: Adaptive Intervention & Branch View (P4 Design Challenge)
+         ========================================================================= -->
+    <section id="screen_branch" class="screen-view">
+      <div class="p4-decision-card">
+        <div class="card-header" style="border-bottom: none; margin-bottom: 8px;">
+          <h2 class="card-title"><span>🔀</span> P4 Design Challenge: Adaptive Decision Rule & 3 Outcomes</h2>
+          <span class="badge badge-teal" id="active-pathway-code-badge">OUTCOME_2</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          How does the tutor decide whether the learner needs a <strong>Harder Question</strong>, an <strong>Alternative Explanation</strong>, or <strong>Prerequisite Instruction</strong>? The 4-signal decision rule evaluates: <em>(A) Numerical Accuracy</em>, <em>(E) Misconception Diagnosis</em>, <em>(I) Interaction Telemetry</em>, and <em>(M) Mastery History</em>.
+        </p>
+
+        <!-- 3 Outcomes Matrix -->
+        <div class="decision-rule-matrix">
+          <!-- Outcome 1 -->
+          <div class="matrix-card" id="matrix-card-1">
+            <div class="active-branch-pill" id="pill-outcome-1" style="display: none;">Active Branch</div>
+            <h4 style="color: #1e40af; font-size: 1rem; margin-bottom: 6px;">Outcome 1: Harder Question</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;"><strong>Trigger:</strong> 2 consecutive correct responses with sound reasoning and 0 hints used.</p>
+            <p style="font-size: 0.88rem; color: var(--text-main);">Routes to multi-step markup + discount or higher-order what-if retail prediction.</p>
+          </div>
+
+          <!-- Outcome 2 -->
+          <div class="matrix-card active-branch" id="matrix-card-2">
+            <div class="active-branch-pill" id="pill-outcome-2">Active Branch</div>
+            <h4 style="color: #b45309; font-size: 1rem; margin-bottom: 6px;">Outcome 2: Alternative Visual Explanation</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;"><strong>Trigger:</strong> M1 (Base-Value Confusion) or M2 (Additive Fallacy) detected.</p>
+            <p style="font-size: 0.88rem; color: var(--text-main);">Renders interactive Rupee-Bar graphic displaying base comparison + parallel retry.</p>
+          </div>
+
+          <!-- Outcome 3 -->
+          <div class="matrix-card" id="matrix-card-3">
+            <div class="active-branch-pill" id="pill-outcome-3" style="display: none;">Active Branch</div>
+            <h4 style="color: #065f46; font-size: 1rem; margin-bottom: 6px;">Outcome 3: Prerequisite Instruction</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;"><strong>Trigger:</strong> 2 consecutive errors on same concept OR prerequisite arithmetic gap.</p>
+            <p style="font-size: 0.88rem; color: var(--text-main);">Provides interactive 2-minute "10% & 5% Mental Math & Price Sorting Mini-Booster".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Remediation / Intervention Display -->
+      <div class="card" id="active-remediation-card">
+        <div class="card-header">
+          <h3 class="card-title" id="remediation-title"><span>📊</span> Visual Rupee-Bar Remediation (Outcome 2)</h3>
+          <span class="badge badge-amber" id="remediation-badge">M1: Base Confusion Detected</span>
+        </div>
+        <p id="remediation-rationale-text" style="color: var(--text-main); font-size: 0.95rem; margin-bottom: 16px;">
+          Sharvee exhibited Base-Value Confusion (M1), taking the 15% discount on Cost Price (₹800) instead of Marked Price (₹1,000). Let us look at the price tag comparison visually:
+        </p>
+
+        <!-- Dynamic Visual Rupee Bar Comparison Container -->
+        <div class="remediation-visual-box">
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 10px;">Comparing the Bases:</h4>
+          
+          <!-- Bar 1: Marked Price (The True Base for Discount) -->
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">
+              <span>✅ Correct: 15% Discount on Marked Price (₹1,000 tag)</span>
+              <span class="text-teal">₹150 Discount • SP = ₹850</span>
+            </div>
+            <div class="visual-progress-track">
+              <div class="bar-segment sp" style="width: 85%;">Selling Price: ₹850 (85%)</div>
+              <div class="bar-segment discount" style="width: 15%;">15% Off: ₹150 (15%)</div>
+            </div>
+          </div>
+
+          <!-- Bar 2: Cost Price (The Wrong Base for Discount) -->
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">
+              <span>❌ Mistake: 15% Discount on Cost Price (₹800 factory cost)</span>
+              <span class="text-amber">Only ₹120 Discount!</span>
+            </div>
+            <div class="visual-progress-track">
+              <div class="bar-segment cp" style="width: 80%;">Factory Cost: ₹800</div>
+              <div class="bar-segment discount" style="width: 12%; background: #f87171;">15% of CP = ₹120</div>
+            </div>
+          </div>
+
+          <div class="calm-banner amber" style="margin-top: 18px; margin-bottom: 0;">
+            <div class="banner-icon">💡</div>
+            <div class="banner-content">
+              <h4>Key Takeaway for Sharvee:</h4>
+              <p>Customers cannot see the shopkeeper's factory bill! The 15% discount is always subtracted from the printed sticker tag (₹1,000), giving ₹150 off.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prerequisite Mini-Booster (Outcome 3 interactive element) -->
+        <div id="prerequisite-booster-box" style="display: none; margin-top: 20px;">
+          <h4 style="font-size: 1rem; font-weight: 700; color: #065f46; margin-bottom: 8px;">Mental Math Mini-Booster: Quick 10% & 5% Trick</h4>
+          <p style="font-size: 0.92rem; color: var(--text-muted);">Never memorize long division! Use the one-zero shifting trick:</p>
+          <div class="mental-booster-grid">
+            <div class="booster-step-card">
+              <div style="font-weight: 700; color: #0d9488;">Step 1: 10% of Any Price</div>
+              <p style="font-size: 0.85rem; margin-top: 4px;">Just drop the last zero or shift decimal one place left!<br><strong>10% of ₹500 = ₹50</strong></p>
+            </div>
+            <div class="booster-step-card">
+              <div style="font-weight: 700; color: #d97706;">Step 2: 5% is Half of 10%</div>
+              <p style="font-size: 0.85rem; margin-top: 4px;">Half of ₹50 is ₹25!<br><strong>5% of ₹500 = ₹25</strong></p>
+            </div>
+            <div class="booster-step-card">
+              <div style="font-weight: 700; color: #2563eb;">Step 3: 15% is 10% + 5%</div>
+              <p style="font-size: 0.85rem; margin-top: 4px;">₹50 + ₹25 = ₹75!<br><strong>Quick & effortless!</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <button id="branch-retry-btn" class="cta-btn">
+            <span>🔄</span> Try Parallel Retry Question
+          </button>
+          <button id="branch-view-teacher-btn" class="cta-btn secondary">
+            <span>👩‍🏫</span> See Teacher Dashboard Status
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SCREEN 5: C5 Teacher-in-the-Loop Dashboard (Ms. Deshmukh's View)
+         ========================================================================= -->
+    <section id="screen_teacher" class="screen-view">
+      <!-- Teacher Header Banner -->
+      <div class="calm-banner teal" style="margin-bottom: 20px;">
+        <div class="banner-icon">👩‍🏫</div>
+        <div class="banner-content">
+          <h4>Ms. Deshmukh's Supervisory Console (Constraint C5)</h4>
+          <p>Real-time learner progress, misconception telemetry, and active approval queue. Every AI-generated diagnostic diagnosis and adaptive routing decision requires your oversight before or alongside delivery to Sharvee.</p>
+        </div>
+      </div>
+
+      <!-- Live Telemetry Counters -->
+      <div class="telemetry-row">
+        <div class="telemetry-card">
+          <span class="telemetry-lbl">Learner Accuracy</span>
+          <div class="telemetry-val text-teal" id="telemetry-accuracy">80%</div>
+          <span style="font-size: 0.8rem; color: var(--text-light);">Across attempted tasks</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-lbl">Tasks Attempted</span>
+          <div class="telemetry-val text-amber" id="telemetry-tasks">3 / 5</div>
+          <span style="font-size: 0.8rem; color: var(--text-light);">Remedial unit session</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-lbl">Active Misconceptions</span>
+          <div class="telemetry-val text-green" id="telemetry-flags">None</div>
+          <span style="font-size: 0.8rem; color: var(--text-light);" id="telemetry-flags-detail">M1 / M2 monitored</span>
+        </div>
+        <div class="telemetry-card">
+          <span class="telemetry-lbl">Review Queue Status</span>
+          <div class="telemetry-val text-teal" id="telemetry-pending">0 Pending</div>
+          <span style="font-size: 0.8rem; color: var(--text-light);">C5 Human-in-the-Loop</span>
+        </div>
+      </div>
+
+      <!-- Mastery Level Bars -->
+      <div class="card mastery-bars-group">
+        <div class="card-header">
+          <h3 class="card-title"><span>📈</span> Learning Outcome Mastery Telemetry</h3>
+          <span class="badge badge-teal">Bloom's Taxonomy Progress</span>
+        </div>
+
+        <div class="mastery-item">
+          <div class="mastery-meta">
+            <span>LO1: Distinguish & Anchor Prices (CP vs MP vs SP)</span>
+            <span id="mastery-lo1-val">95%</span>
+          </div>
+          <div class="mastery-track">
+            <div class="mastery-fill" id="mastery-lo1-fill" style="width: 95%;"></div>
+          </div>
+        </div>
+
+        <div class="mastery-item">
+          <div class="mastery-meta">
+            <span>LO2: Step-by-Step Calculation (Discount & Profit %)</span>
+            <span id="mastery-lo2-val">90%</span>
+          </div>
+          <div class="mastery-track">
+            <div class="mastery-fill" id="mastery-lo2-fill" style="width: 90%; background: #0d9488;"></div>
+          </div>
+        </div>
+
+        <div class="mastery-item">
+          <div class="mastery-meta">
+            <span>LO3: Explain Successive & Repeated Discounts (10%+10% ≠ 20%)</span>
+            <span id="mastery-lo3-val">85%</span>
+          </div>
+          <div class="mastery-track">
+            <div class="mastery-fill" id="mastery-lo3-fill" style="width: 85%; background: #2563eb;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher Review Queue (Constraint C5 Core) -->
+      <div class="card review-queue-card">
+        <div class="card-header">
+          <h3 class="card-title"><span>📋</span> C5 Teacher Review Queue (AI Approvals & Overrides)</h3>
+          <span class="badge badge-amber" id="queue-status-badge">Live Submissions</span>
+        </div>
+        <p style="margin-bottom: 16px; color: var(--text-muted); font-size: 0.92rem;">
+          Ms. Deshmukh can directly <strong>Approve</strong>, <strong>Edit</strong>, or <strong>Override</strong> any AI feedback or learning pathway.
+        </p>
+
+        <div id="review-queue-container">
+          <!-- Dynamically populated queue items -->
+        </div>
+      </div>
+
+      <!-- Auditable Feedback History Log -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"><span>📜</span> Auditable Feedback & Intervention Log</h3>
+          <span class="badge badge-gray">Full Session Trace</span>
+        </div>
+        <div id="audit-log-container" style="max-height: 220px; overflow-y: auto; font-size: 0.88rem; font-family: var(--font-mono); color: #334155;">
+          <!-- Dynamically populated audit log -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SCREEN 6: About & Pedagogical Inspector Screen
+         ========================================================================= -->
+    <section id="screen_inspector" class="screen-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title"><span>🔍</span> Pedagogical Inspector & Viva Evaluation Dashboard</h2>
+          <span class="token-badge">24b3020</span>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">
+          This inspector screen is designed for viva examination. It presents the exact exam card configuration, the formal P4 Decision Rule specification, instant one-click scenario presets, and live reactive store state.
+        </p>
+
+        <!-- Viva Instant Preset Buttons -->
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 12px;">Instant Viva Walkthrough Presets:</h3>
+        <div class="demo-preset-btn-group">
+          <button id="load-scenario-a-btn" class="preset-btn a">
+            <span style="font-size: 1.2rem;">🌟 Scenario A: Correct Learner Path</span>
+            <small>Sound Reasoning → Outcome 1 (Harder Question) → Teacher Approved</small>
+          </button>
+          <button id="load-scenario-b-btn" class="preset-btn b">
+            <span style="font-size: 1.2rem;">⚠️ Scenario B: Misconception Path (M1)</span>
+            <small>Base Confusion → Outcome 2 (Visual Rupee-Bar Remediation) → Teacher Edited</small>
+          </button>
+        </div>
+
+        <div class="inspector-grid">
+          <!-- Left Column: Exam Card Details & Decision Rules -->
+          <div>
+            <div style="background: #f8fafc; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-card); margin-bottom: 20px;">
+              <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 10px;">Exam Card Specifications:</h4>
+              <ul style="font-size: 0.9rem; padding-left: 20px; color: var(--text-muted); line-height: 1.7;">
+                <li><strong>Identity Token:</strong> <code>24b3020</code></li>
+                <li><strong>Problem Statement (P4):</strong> Adaptive tutor with automatic question generation.</li>
+                <li><strong>Topic (T9):</strong> Percentages: discount, profit and loss (Class 8).</li>
+                <li><strong>Learner Context (L5):</strong> Learner repeating the topic after failing once, high anxiety and low self-efficacy.</li>
+                <li><strong>Design Constraint (C5):</strong> Teacher-in-the-loop: teacher view showing progress and letting teacher approve or override AI feedback.</li>
+              </ul>
+            </div>
+
+            <!-- Optional Gemini API Key & Engine Toggle -->
+            <div style="background: #ffffff; padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-card);">
+              <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">AI Engine Configuration</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+                Runs 100% offline via deterministic rule-engine fallback. Enter optional Gemini API key to activate live LLM semantic evaluation:
+              </p>
+              <div class="form-group">
+                <input type="password" id="gemini-api-key-input" class="form-control" placeholder="Enter optional VITE_GEMINI_API_KEY">
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <button id="save-api-key-btn" class="btn-teacher btn-edit">Save Key</button>
+                <span id="active-engine-badge" class="badge badge-teal">Offline Deterministic Active</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Live Reactive State Inspector -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <h4 style="font-size: 0.95rem; font-weight: 700;">Live Reactive State Store:</h4>
+              <button id="reset-state-btn" class="btn-teacher btn-override" style="font-size: 0.8rem;">Reset State</button>
+            </div>
+            <pre id="state-inspector-output" class="state-inspector-pre"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer displaying Token 24b3020 on every screen -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="footer-token-prominent">Token: 24b3020</span>
+        <span>• Repository: <code>et617-endsem-24b3020</code></span>
+      </div>
+      <div>
+        <span>ET 617-2026 End-Semester Examination • Card P4-T9-L5-C5</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modular Application Controller -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
