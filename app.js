@@ -5,11 +5,11 @@
  * Exam Card: P4-T9-L5-C5
  */
 
-import { appStore } from './src/state.js';
-import { MathEngine } from './src/mathEngine.js';
-import { DiagnosticEngine } from './src/diagnosticEngine.js';
-import { AdaptiveRules } from './src/adaptiveRules.js';
-import { QuestionGenerator } from './src/questionBank.js';
+import { appStore } from './state.js';
+import { MathEngine } from './mathEngine.js';
+import { DiagnosticEngine } from './diagnosticEngine.js';
+import { AdaptiveRules } from './adaptiveRules.js';
+import { QuestionGenerator } from './questionBank.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM Elements Cache ---
